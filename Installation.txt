@@ -1,0 +1,30 @@
+Installation Notes
+==================
+
+XAMPP
+- Install XAMPP in c:\xampp to have access to MySql
+- Start MySql from the Xampp control panel
+- Eventually, copy \php\example\phpinfo.php into c:\xampp\htdocs\xampp\phpinfo.php
+
+REM: It does not matter if fpm is not enabled locally
+
+MYSQL
+- Set proper UTF8 in MySql: https://symfony.com/doc/current/book/doctrine.html
+
+VIRTUAL HOST (eventually)
+- Lets myapp.local point to the directory hosting your code
+-> See http://framework.zend.com/manual/current/en/user-guide/skeleton-application.html
+
+NETBEANS
+- Install the Zend2 plugin
+- If necessary, configure Composer
+-- Right-click the Netbeans project and select composer > self-update
+-- Then, select Composer > install (Dev)
+
+ZEND APP CREATION
+- If not set-up in Netbeans
+-- Download the zendskeleton.zip in c:\php
+-- Configure Netbeans (PHP tab) to set the location of this skeleton
+- Or unzip it in the target directory
+-- and create a Netbeans Zend application with sources
+-- make sure the web root is set to \public
