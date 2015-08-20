@@ -21,36 +21,5 @@ is requested by the user.
 -- If a module has an init() function, it will be called by the Zend\ModuleManager
 -- To create a module: http://framework.zend.com/manual/current/en/modules/zend.mvc.quick-start.html
 
-
-
 Q's:
 ====
-- 
-
-phpdocumentor/reflection-docblock suggests installing dflydev/markdown (~1.0)
-phpdocumentor/reflection-docblock suggests installing erusev/parsedown (~1.0)
-sebastian/global-state suggests installing ext-uopz (*)
-phpunit/phpunit-mock-objects suggests installing ext-soap (*)
-phpunit/php-code-coverage suggests installing ext-xdebug (>=2.2.1)
-phpunit/phpunit suggests installing phpunit/php-invoker (~1.1)
-zendframework/zend-code suggests installing doctrine/common (Doctrine\Common >=2.1 for annotation features)
-zendframework/zend-math suggests installing ext-gmp (If using the gmp functionality)
-zendframework/zend-math suggests installing ircmaxell/random-lib (Fallback random byte generator for Zend\Math\Rand if OpenSSL/Mcrypt extensions are unavailable)
-zendframework/zend-validator suggests installing zendframework/zend-resources (Translations of validator messages)
-zendframework/zend-servicemanager suggests installing ocramius/proxy-manager (ProxyManager 0.5.* to handle lazy initialization of services)
-zendframework/zend-form suggests installing zendframework/zendservice-recaptcha (ZendService\ReCaptcha component)
-zendframework/zend-log suggests installing ext-mongo (*)
-zendframework/zend-i18n suggests installing ext-intl (Required for most features of Zend\I18n; included in default builds of PHP)
-zendframework/zend-i18n suggests installing zendframework/zend-resources (Translation resources)
-zendframework/zend-debug suggests installing ext/xdebug (XDebug, for better backtrace output)
-zendframework/zend-captcha suggests installing zendframework/zend-resources (Translations of captcha messages)
-zendframework/zend-captcha suggests installing zendframework/zendservice-recaptcha (ZendService\ReCaptcha component)
-zendframework/zend-cache suggests installing ext-apc (APC >= 3.1.6 to use the APC storage adapter)
-zendframework/zend-cache suggests installing ext-dba (DBA, to use the DBA storage adapter)
-zendframework/zend-cache suggests installing ext-memcached (Memcached >= 1.0.0 to use the Memcached storage adapter)
-zendframework/zend-cache suggests installing ext-mongo (Mongo, to use MongoDb storage adapter)
-zendframework/zend-cache suggests installing ext-wincache (WinCache, to use the WinCache storage adapter)
-zendframework/zend-cache suggests installing mongofill/mongofill (Alternative to ext-mongo - a pure PHP implementation designed as a drop in replacement)
-zendframework/zend-barcode suggests installing zendframework/zendpdf (ZendPdf component)
-zendframework/zend-authentication suggests installing zendframework/zend-ldap (Zend\Ldap component)
-zendframework/zendframework suggests installing zendframework/zend-ldap (zend-ldap component ~2.5.0, if you need LDAP features)

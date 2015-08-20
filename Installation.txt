@@ -19,7 +19,6 @@ NETBEANS
 - Install the Zend2 plugin
 - If necessary, configure Composer
 -- Right-click the Netbeans project and select composer > self-update
--- Then, select Composer > install (Dev)
 
 ZEND APP CREATION
 - If not set-up in Netbeans
@@ -28,3 +27,6 @@ ZEND APP CREATION
 - Or unzip it in the target directory
 -- and create a Netbeans Zend application with sources
 -- make sure the web root is set to \public
+- Composer:
+-- Right-click the Netbeans project and select Composer > install
+-- a composer.lock will be automatically created, add it to git commit

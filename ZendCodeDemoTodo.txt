@@ -7,3 +7,5 @@ To Do:
 - Translation
 - Admin
 - Access control
+- Remove unnecessary dependencies
+- Add Grunt?
