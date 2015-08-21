@@ -1,15 +1,12 @@
 To Do:
 ======
-- Implement main page & controller
 - Login/Logout
 - Review Bootstrap CSS
 - Test a service
 - Translation
 - Admin
 - Access control
-- Remove unnecessary dependencies
 - Add Grunt?
 
 Q's
 - How to debug Zend 2 application?
-- Why the 
