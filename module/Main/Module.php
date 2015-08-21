@@ -14,6 +14,7 @@ use Zend\Mvc\MvcEvent;
 
 class Module
 {
+    // Must be included in one module only (it is enough)
     public function onBootstrap(MvcEvent $e)
     {
         $eventManager        = $e->getApplication()->getEventManager();

@@ -6,6 +6,7 @@
  use Zend\ModuleManager\Feature\AutoloaderProviderInterface;
  use Zend\ModuleManager\Feature\ConfigProviderInterface;
 
+ // The class MUST be named module
  class Module implements AutoloaderProviderInterface, ConfigProviderInterface
  {
      /**

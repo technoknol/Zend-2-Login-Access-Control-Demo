@@ -7,7 +7,8 @@ return array(
             __DIR__ . '/../view',
         ),
     ),
-    // Mapping controller names to controller files
+    // For the view directory, the controller name will be stripped
+    // of 'Controller' and lower-cased -> myy
     'controllers' => array(
         'invokables' => array(
             'Template\Controller\MyCtrl' => 'Template\Controller\MyyController'

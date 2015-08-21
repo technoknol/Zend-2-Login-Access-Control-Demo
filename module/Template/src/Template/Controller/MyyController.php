@@ -1,5 +1,5 @@
 <?php
-// Filename: /module/Template/src/Template/Controller/MyController.php
+// Filename: /module/Template/src/Template/Controller/MyyController.php
 namespace Template\Controller;
 
 use Zend\Mvc\Controller\AbstractActionController;
