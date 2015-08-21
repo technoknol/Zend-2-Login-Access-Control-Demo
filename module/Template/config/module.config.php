@@ -2,15 +2,15 @@
 // Filename: /module/_MainTemplate/config/module.config.php
 return array(
     // Telling where the views are
-   'view_manager' => array(
-       'template_path_stack' => array(
-           __DIR__ . '/../view',
-       ),
+    'view_manager' => array(
+        'template_path_stack' => array(
+            __DIR__ . '/../view',
+        ),
     ),
     // Mapping controller names to controller files
     'controllers' => array(
         'invokables' => array(
-            'Template\Controller\My' => 'Template\Controller\MyController'
+            'Template\Controller\MyCtrl' => 'Template\Controller\MyyController'
         )
     ),
     // This lines opens the configuration for the RouteManager
@@ -28,7 +28,7 @@ return array(
                     'route'    => '/myroute',
                     // Define default controller and action to be called when this route is matched
                     'defaults' => array(
-                        'controller' => 'Template\Controller\My',
+                        'controller' => 'Template\Controller\MyCtrl',
                         'action'     => 'index',
                     )
                 )

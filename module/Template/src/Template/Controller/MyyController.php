@@ -5,7 +5,7 @@ namespace Template\Controller;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 
-class MyController extends AbstractActionController
+class MyyController extends AbstractActionController
 {
     public function indexAction()
     {
