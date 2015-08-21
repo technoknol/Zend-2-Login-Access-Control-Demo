@@ -19,7 +19,6 @@ is requested by the user.
 --- http://framework.zend.com/manual/current/en/modules/zend.mvc.intro.html
 -- The Zend\ModuleManager loads the module (i.e., class)
 -- If a module has an init() function, it will be called by the Zend\ModuleManager
--- To create a module: http://framework.zend.com/manual/current/en/modules/zend.mvc.quick-start.html
 
 Q's:
 ====
