@@ -22,4 +22,4 @@ is requested by the user.
 
 References:
 - $this in .phtml relates to a ViewModel instance
--- Doc for methods -> http://framework.zend.com/manual/current/en/modules/zend.view.helpers.head-link.html
+-- Doc for methods -> http://framework.zend.com/manual/current/en/modules/zend.view.helpers.html#included-helpers
