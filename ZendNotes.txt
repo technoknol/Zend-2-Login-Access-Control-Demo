@@ -20,5 +20,6 @@ is requested by the user.
 -- The Zend\ModuleManager loads the module (i.e., class)
 -- If a module has an init() function, it will be called by the Zend\ModuleManager
 
-Q's:
-====
+References:
+- $this in .phtml relates to a ViewModel instance
+-- Doc for methods -> http://framework.zend.com/manual/current/en/modules/zend.view.helpers.head-link.html
