@@ -1,1 +1,25 @@
-<p>Main page</p>
+<?php
+    $this->headMeta()->appendName('description',
+      $this->translate('A demonstration application for the Zend 2 framework'));
+?>
+
+<div class="col-xs-12 col-md-6">
+
+<h1>Introduction</h1>
+<p>This is the home page of this ZF2 demo application. It demonstrates the use
+    of login/logout, access control and some usage of Bootstrap CSS.</p>
+
+<p>Three users have been created:</p>
+
+<ul>
+    <li><strong>user1</strong> with password <em>user1</em> (cannot access user2 and admin pages)</li>
+    <li><strong>user2</strong> with password <em>user2</em> (cannot access user1 and admin pages)</li>
+    <li><strong>admin</strong> with password <em>admin</em> (can access user1 and user2 pages)</li>
+</ul>
+</div>
+
+<div class="col-xs-12 col-md-6">
+    <h1>Login Status</h1>
+    <p>You are logged in !!!</p>
+</div>
+
