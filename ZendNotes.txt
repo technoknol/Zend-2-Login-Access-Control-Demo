@@ -21,5 +21,8 @@ is requested by the user.
 -- If a module has an init() function, it will be called by the Zend\ModuleManager
 
 References:
-- $this in .phtml relates to a ViewModel instance
+- Methods & classes documentation:
+-- http://framework.zend.com/apidoc/2.0/
+- ViewModel
+-- $this in .phtml relates to a ViewModel instance
 -- Doc for methods -> http://framework.zend.com/manual/current/en/modules/zend.view.helpers.html#included-helpers
