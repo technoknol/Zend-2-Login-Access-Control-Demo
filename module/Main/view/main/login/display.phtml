@@ -1,0 +1,57 @@
+<?php
+
+if ( $this->userLoggedIn ) {
+    
+    echo '<h1>Login Status</h1>';
+    echo '<p>You are logged in as <strong>'.$this->username.'</strong>!</p>';
+
+ ?>
+    
+    <a href="/logout">Logout</a>
+    
+<?php
+        
+} else {
+    
+    $form = $this->form;
+    $form->setAttribute('action', $this->url(
+        'authenticate'
+    ));
+    $form->prepare();
+
+    echo '<h1>Login</h1>';
+
+?>    
+    
+    <form method="POST" name="User" action="/authenticate" id="User">
+        <fieldset >
+            <div class="form-group">
+                <label>Username</label>
+                <input type="text" class="form-control" name="username" required="required"
+                    value="<?php echo $this->username; ?>">
+            </div>
+            <div class="form-group">
+                <label>Password</label>
+                <input type="password" class="form-control" name="password" required="required" value="">
+            </div>
+            <div class="checkbox">
+                <label>Remember Me
+                    <input type="hidden" name="rememberme" value="0"><input type="checkbox" name="rememberme" value="1">
+                </label>
+            </div>
+            <button type="submit" name="submit" value="Submit"  class="btn btn-default">Submit</button>
+        </fieldset>
+    </form>
+
+<?php
+
+    if ($this->messages){
+        echo '<br /><ul class="text-danger">';
+        foreach($this->messages as $message)
+        {
+            echo '<li>'.$message.'</li>';
+        }
+        echo '</ul>';
+    }
+    
+}
