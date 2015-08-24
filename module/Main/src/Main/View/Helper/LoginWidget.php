@@ -3,7 +3,7 @@
 namespace Main\View\Helper;
 
 use Zend\View\Helper\AbstractHelper;
-use Main\Controller\AuthController;
+use Main\Service\LoginLogoutService;
 
 // The instance of this class is created in 
 // getViewHelperConfig() in Module.php
@@ -11,32 +11,29 @@ use Main\Controller\AuthController;
 class LoginWidget extends AbstractHelper
 {
     
-    protected $authController;
+    protected $loginLogoutService;
     
-    public function __construct(AuthController $authController)
+    public function __construct(LoginLogoutService $loginLogoutService)
     {
-    	$this->authController = $authController;
+    	$this->loginLogoutService = $loginLogoutService;
     }
     
     public function __invoke()
     {
         $params = array();
-        $userLoggedIn = $this->authController->getAuthService()->hasIdentity();
-        $params['userLoggedIn'] = $userLoggedIn;
+        $userLoggedIn = $this->loginLogoutService->getLoggedIdentity();
         
         if ( $userLoggedIn ) {
-            $params['username'] = $this->authController->getAuthService()->getIdentity();
+            $params['userLoggedIn'] = true;
+            $params['username'] = $userLoggedIn['username'];
         } else {
+            $params['userLoggedIn'] = false;
             $params['username'] = "";
+            $params['form'] = $this->loginLogoutService->getForm();
+            $params['messages'] = $this->loginLogoutService->getLastLoginAttemptMessages();
         }
         
-        if ( !$userLoggedIn ) {
-            $params['form'] = $this->authController->getForm();
-            $params['messages'] = $this->authController->flashmessenger()->getMessages();
-            $params['username'] = $this->authController->getAuthService()->getStorage()->read();
-        }
-        
-        return $this->getView()->render('main/login/display', $params);
+        return $this->getView()->render('main/login/widget', $params);
     }
     
 }

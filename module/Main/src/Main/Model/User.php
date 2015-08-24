@@ -4,6 +4,13 @@ namespace Main\Model;
 
 use Zend\Form\Annotation;
 
+// Typically, the instances of this user class could be 
+// stored in a database. The password would be encrypted
+// for security reasons.
+//
+// In this application, it is used to retrieve login
+// information from the login form.
+
 /**
  * @Annotation\Hydrator("Zend\Stdlib\Hydrator\ObjectProperty")
  * @Annotation\Name("User")

@@ -4,11 +4,12 @@ namespace Main;
 
 use Zend\Mvc\ModuleRouteListener;
 use Zend\Mvc\MvcEvent;
-use Zend\Authentication\AuthenticationService;
+use Main\Service\LoginLogoutService;
 
 class Module
 {
     // Must be included in one module only (it is enough)
+    
     public function onBootstrap(MvcEvent $e)
     {
         $eventManager        = $e->getApplication()->getEventManager();
@@ -36,11 +37,8 @@ class Module
     {
         return array(
             'factories'=>array(
-                'MyAuthStorage' => function(){
-                    return new \Main\Model\MyAuthStorage();
-                },
-                'MyAuthService' => function() {
-                    return new AuthenticationService();
+                'LoginLogoutService' => function() {
+                    return new LoginLogoutService();
                 },
             ),
         );
@@ -51,11 +49,10 @@ class Module
         return array(
             'factories' => array(
                 'loginWidget' => function ($helperPluginManager) {
-                    $authController = $helperPluginManager
+                    $loginOutSrv = $helperPluginManager
                         ->getServiceLocator()
-                        ->get('ControllerManager')
-                        ->get('Main\Controller\Auth');
-                    return new \Main\View\Helper\LoginWidget($authController);
+                        ->get('LoginLogoutService');
+                    return new \Main\View\Helper\LoginWidget($loginOutSrv);
                 }
             )
         );

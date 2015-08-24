@@ -1,10 +1,14 @@
 <?php
 
-namespace Main\Model;
+namespace Main\Service;
 
 use Zend\Authentication\Storage;
 
-class MyAuthStorage extends Storage\Session
+// Proxy for saving data in $_SESSION.
+// 
+// This is not the database where user information would be stored.
+
+class UserSessionStorage extends Storage\Session
 {
     public function setRememberMe($rememberMe = 0, $time = 1209600)
     {

@@ -20,7 +20,7 @@ return array(
                     'route'    => '/authenticate',
                     'defaults' => array(
                         '__NAMESPACE__' => 'Main\Controller',
-                        'controller'    => 'Auth',
+                        'controller'    => 'Authentication',
                         'action'        => 'authenticate',
                     ),
                 )
@@ -31,10 +31,23 @@ return array(
                     'route'    => '/logout',
                     'defaults' => array(
                         '__NAMESPACE__' => 'Main\Controller',
-                        'controller'    => 'Auth',
+                        'controller'    => 'Authentication',
                         'action'        => 'logout',
                     ),
                 )
+            ),
+            'restricted' => array(
+                'type'    => 'segment',
+                'options' => array(
+                     'route'    => '/restricted[/:action][/:username]',
+                     'constraints' => array(
+                         'action' => '[a-zA-Z]+',
+                         'username'     => '[a-zA-Z][a-zA-Z0-9_-]*',
+                     ),
+                     'defaults' => array(
+                         'controller' => 'Main\Controller\Access',
+                     ),
+                ),
             ),
         ),
     ),
@@ -60,7 +73,8 @@ return array(
     'controllers' => array(
         'invokables' => array(
             'Main\Controller\Index' => 'Main\Controller\IndexController',
-            'Main\Controller\Auth'    => 'Main\Controller\AuthController'
+            'Main\Controller\Authentication' => 'Main\Controller\AuthenticationController',
+            'Main\Controller\Access' => 'Main\Controller\AccessController'
         ),
     ),
     'view_manager' => array(
@@ -72,10 +86,12 @@ return array(
         'template_map' => array(
             // Define a global template used to render smaller template in it
             'layout/layout'           => __DIR__ . '/../view/layout/layout.phtml',
-            'main/index/index'        => __DIR__ . '/../view/main/index/index.phtml',
-            'main/login/display'        => __DIR__ . '/../view/main/login/display.phtml',
             'error/404'               => __DIR__ . '/../view/error/404.phtml',
             'error/index'             => __DIR__ . '/../view/error/index.phtml',
+            'main/index/index'        => __DIR__ . '/../view/main/index/index.phtml',
+            'main/login/widget'      => __DIR__ . '/../view/main/login/widget.phtml',
+            'main/access/admin'       => __DIR__ . '/../view/main/access/admin.phtml',
+            'main/access/user'        => __DIR__ . '/../view/main/access/user.phtml',
         ),
     ),
     // Placeholder for console routes

@@ -1,21 +1,20 @@
 <?php
 
-namespace Main\Model;
+namespace Main\Service;
 
 use Zend\Authentication\Adapter\AdapterInterface;
 use Zend\Authentication\Result;
 
 // Authentication services delegate the actual authentication
-// one (or more) authentication adaptors.
+// to one (or more) authentication adaptors.
 //
 // In reality, this adaptor would probably load the username
 // and encrypted password from a database
 
-class MyAuthAdaptor implements AdapterInterface
+class AuthenticationAdaptor implements AdapterInterface
 {
     private $storedUsername = "";
     private $storedPassword = "";
-    private $grantedRoles = "";
     
     private static $knownUsers = array("user1","user2","admin"); 
     
@@ -45,6 +44,7 @@ class MyAuthAdaptor implements AdapterInterface
     {
         $authenticationCode = Result::FAILURE;
         $msgs = array();
+        $grantedRoles = array();
         
         if ( $this->storedUsername === "" ) {
             $authenticationCode = Result::FAILURE_IDENTITY_AMBIGUOUS;
@@ -52,26 +52,26 @@ class MyAuthAdaptor implements AdapterInterface
         } else if ( $this->storedPassword === "" ) {
             $authenticationCode = Result::FAILURE_CREDENTIAL_INVALID;
             $msgs[] = "No password provided";
-        } else if (!in_array($this->storedUsername, MyAuthAdaptor::$knownUsers)) {
+        } else if (!in_array($this->storedUsername, AuthenticationAdaptor::$knownUsers)) {
             $authenticationCode = Result::FAILURE_IDENTITY_NOT_FOUND;
             $msgs[] = "Unknown user '".$this->storedUsername."'";
         } else if ( $this->storedUsername === $this->storedPassword ) {
             $authenticationCode = Result::SUCCESS;
+            $grantedRoles[] = "ROLE_AUTHENTICATED";
+            if ( $this->storedUsername === "admin" ) {
+                $grantedRoles[] = "ROLE_ADMINISTRATOR";
+            }
         } else {
             $authenticationCode = Result::FAILURE_CREDENTIAL_INVALID;
             $msgs[] = "Wrong password";
         }
         
-        return new Result($authenticationCode, $this->storedUsername, $msgs);
+        $lii = array();
+        $lii["username"] = $this->storedUsername;
+        $lii["grantedRole"] = $grantedRoles;
+        
+        // new LoggedInIdentity($this->storedUsername,$grantedRoles);
+        
+        return new Result($authenticationCode, $lii, $msgs);
     }
-    
-    /**
-     * Sets username and password for authentication
-     *
-     * @return string
-     */
-    public function getUsername() {
-        return $this->storedUsername;
-    }
-    
 }
