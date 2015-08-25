@@ -20,6 +20,21 @@ NETBEANS
 - If necessary, configure Composer
 -- Right-click the Netbeans project and select composer > self-update
 
+- Debug
+-- To install XDebug, go to http://xdebug.org/wizard.php and follow instruction
+-- Retrieve your IPv4 address with ipconfig in DOS session
+-- Edit php.ini and add:
+zend_extension = "C:\php\php_xdebug-2.3.3-5.5-vc11.dll"
+xdebug.remote_autostart=on
+xdebug.remote_enable=on
+xdebug.remote_handler=dbgp
+xdebug.remote_host=192.168.1.19
+xdebug.remote_port=9000
+xdebug.remote_mode=req
+xdebug.idekey="netbeans-xdebug"
+-- Double-check the idekey and port value in Netbeans PHP configuration
+-- Reboot Netbeans
+
 ZEND APP CREATION
 - If not set-up in Netbeans
 -- Download the zendskeleton.zip in c:\php
