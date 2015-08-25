@@ -12,3 +12,4 @@ vendor
 composer.phar
 !/composer.lock
 /ZendCodeDemoTodo.txt
+/ZendNotes.txt
