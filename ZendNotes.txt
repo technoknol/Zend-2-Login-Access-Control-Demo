@@ -20,9 +20,25 @@ is requested by the user.
 -- The Zend\ModuleManager loads the module (i.e., class)
 -- If a module has an init() function, it will be called by the Zend\ModuleManager
 
+- Debug
+-- To install XDebug, go to http://xdebug.org/wizard.php and follow instruction
+-- Retrieve your IPv4 address with ipconfig in DOS session
+-- Edit php.ini and add:
+zend_extension = "C:\php\php_xdebug-2.3.3-5.5-vc11.dll"
+xdebug.remote_autostart=on
+xdebug.remote_enable=on
+xdebug.remote_handler=dbgp
+xdebug.remote_host=192.168.1.19
+xdebug.remote_port=9000
+xdebug.remote_mode=req
+xdebug.idekey="netbeans-xdebug"
+-- Double-check the idekey and port value in Netbeans PHP configuration
+-- Reboot Netbeans
+
 References:
 - Methods & classes documentation:
 -- http://framework.zend.com/apidoc/2.0/
 - ViewModel
 -- $this in .phtml relates to a ViewModel instance
 -- Doc for methods -> http://framework.zend.com/manual/current/en/modules/zend.view.helpers.html#included-helpers
+-- Widget creation: http://www.michaelgallego.fr/blog/2012/10/06/how-to-replace-the-action-helper-in-zf-2-and-make-great-widgetized-content/
