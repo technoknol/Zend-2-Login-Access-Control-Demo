@@ -1,14 +1,8 @@
-Zend 2 Demo Application
-=======================
+Zend 2 Login/Logout Application
+===============================
 
 Introduction
 ------------
-This is a simple demo application using the ZF2 MVC layer and module
-systems. The Main module replaces the Application module of the ZF2 seleton
-application. 
-
-## Template module
-
-A template module has been created and can be cloned to create extra modules
-next to the Main module.
-
+This is a simple ZF2 demo login/logout (with access control) application
+example. The Main module replaces the Application module of the skeleton
+application.
