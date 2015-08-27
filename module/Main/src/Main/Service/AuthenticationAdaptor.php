@@ -4,6 +4,7 @@ namespace Main\Service;
 
 use Zend\Authentication\Adapter\AdapterInterface;
 use Zend\Authentication\Result;
+use Main\Controller\AccessController;
 
 // Authentication services delegate the actual authentication
 // to one (or more) authentication adaptors.
@@ -13,6 +14,9 @@ use Zend\Authentication\Result;
 
 class AuthenticationAdaptor implements AdapterInterface
 {
+    CONST USERNAME = "username";
+    CONST GRANTED_ROLES = "grantedRoles";
+    
     private $storedUsername = "";
     private $storedPassword = "";
     
@@ -57,21 +61,19 @@ class AuthenticationAdaptor implements AdapterInterface
             $msgs[] = "Unknown user '".$this->storedUsername."'";
         } else if ( $this->storedUsername === $this->storedPassword ) {
             $authenticationCode = Result::SUCCESS;
-            $grantedRoles[] = "ROLE_AUTHENTICATED";
+            $grantedRoles[] = AccessController::ROLE_AUTHENTICATED;
             if ( $this->storedUsername === "admin" ) {
-                $grantedRoles[] = "ROLE_ADMINISTRATOR";
+                $grantedRoles[] = AccessController::ROLE_ADMINISTRATOR;
             }
         } else {
             $authenticationCode = Result::FAILURE_CREDENTIAL_INVALID;
             $msgs[] = "Wrong password";
         }
         
-        $lii = array();
-        $lii["username"] = $this->storedUsername;
-        $lii["grantedRole"] = $grantedRoles;
+        $loggedInIdentity = array();
+        $loggedInIdentity[AuthenticationAdaptor::USERNAME] = $this->storedUsername;
+        $loggedInIdentity[AuthenticationAdaptor::GRANTED_ROLES] = $grantedRoles;
         
-        // new LoggedInIdentity($this->storedUsername,$grantedRoles);
-        
-        return new Result($authenticationCode, $lii, $msgs);
+        return new Result($authenticationCode, $loggedInIdentity, $msgs);
     }
 }

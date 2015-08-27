@@ -3,6 +3,7 @@
 namespace Main\Controller;
 
 use Zend\Mvc\Controller\AbstractActionController;
+use Zend\Mvc\Controller\PluginManager;
 
 // Handles user requests to /authentication and /logout routes
 //
@@ -11,21 +12,17 @@ use Zend\Mvc\Controller\AbstractActionController;
 
 class AuthenticationController extends AbstractActionController
 {
-   
     private $loginLogoutService;
     
-    private function getLoginLogoutService()
-    {
-        if (!$this->loginLogoutService) {
-            $this->loginLogoutService =
-                $this->getServiceLocator()->get('LoginLogoutService');
-        }
-        return $this->loginLogoutService;
+    public function setPluginManager(PluginManager $plugins) {
+        parent::setPluginManager($plugins);
+        $this->loginLogoutService = $this->getServiceLocator()
+            ->get('LoginLogoutService');
     }
 
     public function authenticateAction()
     {
-        $form = $this->getLoginLogoutService()->getForm();
+        $form = $this->loginLogoutService->getForm();
         $request = $this->getRequest();
         
         if ($request->isPost()){
@@ -33,7 +30,7 @@ class AuthenticationController extends AbstractActionController
             $form->setData($request->getPost());
             // Is the retrieved data valid?
             if ($form->isValid()){
-                $this->getLoginLogoutService()->authenticate($request);
+                $this->loginLogoutService->authenticate($request);
             }
         }
 
@@ -43,7 +40,7 @@ class AuthenticationController extends AbstractActionController
 
     public function logoutAction()
     {
-        $this->getLoginLogoutService()->logout();
+        $this->loginLogoutService->logout();
         
         return $this->redirect()->toRoute('home');
     }
