@@ -99,7 +99,7 @@ class AccessController extends AbstractActionController
     public function adminAction()
     {
         if ( $this->loggedInUserHasRole(AccessController::ROLE_ADMINISTRATOR)) {
-            new ViewModel();
+            return new ViewModel();
         } else {
             return $this->accDen403View;
         }
