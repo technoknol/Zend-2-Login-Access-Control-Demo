@@ -4,7 +4,12 @@ namespace Main;
 
 use Zend\Mvc\ModuleRouteListener;
 use Zend\Mvc\MvcEvent;
+use Zend\Mvc\Controller\ControllerManager;
+use Main\View\Helper\LoginWidget;
 use Main\Service\LoginLogoutService;
+use Main\Service\RollADiceService;
+use Main\Controller\AuthenticationController;
+use Main\Controller\RollADiceController;
 
 class Module
 {
@@ -40,6 +45,28 @@ class Module
                 'LoginLogoutService' => function() {
                     return new LoginLogoutService();
                 },
+                'RollADiceService' => function() {
+                    return new RollADiceService();
+                },
+            ),
+        );
+    }
+    
+    public function getControllerConfig() {
+        return array(
+            'factories' => array(
+                'Main\Controller\Authentication' => function($cm) {
+                    $sm   = $cm->getServiceLocator();
+                    $depA = $sm->get('LoginLogoutService');
+                    $controller = new AuthenticationController($depA);
+                    return $controller;
+                },
+                'Main\Controller\RollADice' => function($cm) {
+                    $sm   = $cm->getServiceLocator();
+                    $depA = $sm->get('RollADiceService');
+                    $controller = new RollADiceController($depA);
+                    return $controller;
+                }
             ),
         );
     }
@@ -52,7 +79,7 @@ class Module
                     $loginOutSrv = $helperPluginManager
                         ->getServiceLocator()
                         ->get('LoginLogoutService');
-                    return new \Main\View\Helper\LoginWidget($loginOutSrv);
+                    return new LoginWidget($loginOutSrv);
                 }
             )
         );

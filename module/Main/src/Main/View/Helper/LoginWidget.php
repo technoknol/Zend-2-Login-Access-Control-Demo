@@ -3,6 +3,7 @@
 namespace Main\View\Helper;
 
 use Zend\View\Helper\AbstractHelper;
+use Zend\ModuleManager\Feature\ViewHelperProviderInterface;
 use Main\Service\LoginLogoutService;
 
 // The instance of this class is created in 
@@ -12,7 +13,7 @@ class LoginWidget extends AbstractHelper
 {
     
     protected $loginLogoutService;
-    
+
     public function __construct(LoginLogoutService $loginLogoutService)
     {
     	$this->loginLogoutService = $loginLogoutService;

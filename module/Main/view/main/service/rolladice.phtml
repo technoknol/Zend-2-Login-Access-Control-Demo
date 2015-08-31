@@ -1,0 +1,39 @@
+<?php
+    $this->headMeta()->appendName('description', 'Example of a roundtrip and Ajax use of a service');
+?>
+
+<div class="col-xs-12 col-md-6">
+
+<h1>Roundtrip</h1>
+
+<?php
+    $result = $this->result;
+    echo "<p>Roll-a-dice result: ".$result."</p>";
+?>
+    <a href="/roll-a-dice" class="btn btn-default">Roll Again</a>
+
+</div>
+
+<div class="col-xs-12 col-md-6">
+    
+<h1>Ajax Call</h1>
+
+    <p>Roll-a-dice result: <span id="radResult"></span></p>
+    <input type="button" id="rollAgain" class="btn btn-default" value="Roll Again" />
+
+</div>
+
+<script type="text/javascript">
+
+    var rares = $("#radResult");
+
+    $("#rollAgain").click(function () {
+        $.getJSON( "/roll-a-dice-ajax", function(data) {
+            rares.text(data["result"]);
+        })
+        .fail(function() {
+            rares.text("error");
+        });
+    });
+
+</script>

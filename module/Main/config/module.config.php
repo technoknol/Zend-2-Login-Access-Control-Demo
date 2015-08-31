@@ -19,8 +19,7 @@ return array(
                 'options' => array(
                     'route'    => '/authenticate',
                     'defaults' => array(
-                        '__NAMESPACE__' => 'Main\Controller',
-                        'controller'    => 'Authentication',
+                        'controller'    => 'Main\Controller\Authentication',
                         'action'        => 'authenticate',
                     ),
                 )
@@ -30,8 +29,7 @@ return array(
                 'options' => array(
                     'route'    => '/logout',
                     'defaults' => array(
-                        '__NAMESPACE__' => 'Main\Controller',
-                        'controller'    => 'Authentication',
+                        'controller'    => 'Main\Controller\Authentication',
                         'action'        => 'logout',
                     ),
                 )
@@ -48,6 +46,26 @@ return array(
                          'controller' => 'Main\Controller\Access',
                      ),
                 ),
+            ),
+            'roll-a-dice' => array(
+                'type'    => 'Literal',
+                'options' => array(
+                    'route'    => '/roll-a-dice',
+                    'defaults' => array(
+                        'controller'    => 'Main\Controller\RollADice',
+                        'action'        => 'rolladice',
+                    ),
+                )
+            ),
+            'roll-a-dice-ajax' => array(
+                'type'    => 'Literal',
+                'options' => array(
+                    'route'    => '/roll-a-dice-ajax',
+                    'defaults' => array(
+                        'controller'    => 'Main\Controller\RollADice',
+                        'action'        => 'rollADiceAjax',
+                    ),
+                )
             ),
         ),
     ),
@@ -73,8 +91,9 @@ return array(
     'controllers' => array(
         'invokables' => array(
             'Main\Controller\Index' => 'Main\Controller\IndexController',
-            'Main\Controller\Authentication' => 'Main\Controller\AuthenticationController',
-            'Main\Controller\Access' => 'Main\Controller\AccessController'
+//            'Main\Controller\Authentication' => 'Main\Controller\AuthenticationController',
+            'Main\Controller\Access' => 'Main\Controller\AccessController',
+//            'Main\Controller\RollADice' => 'Main\Controller\RollADiceController'
         ),
     ),
     'view_manager' => array(
@@ -93,6 +112,10 @@ return array(
             'main/login/widget'       => __DIR__ . '/../view/main/login/widget.phtml',
             'main/access/admin'       => __DIR__ . '/../view/main/access/admin.phtml',
             'main/access/user'        => __DIR__ . '/../view/main/access/user.phtml',
+            'main/service/rad'        => __DIR__ . '/../view/main/service/rolladice.phtml',
+        ),
+        'strategies' => array(
+            'ViewJsonStrategy',
         ),
     ),
     // Placeholder for console routes
