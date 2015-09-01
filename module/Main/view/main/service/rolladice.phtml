@@ -6,6 +6,9 @@
 
 <h1>Roundtrip</h1>
 
+<p>The result is computed when the page is generated. A new throw requires
+    reloading the whole page.</p>
+
 <?php
     $result = $this->result;
     echo "<p>Roll-a-dice result: ".$result."</p>";
@@ -17,6 +20,9 @@
 <div class="col-xs-12 col-md-6">
     
 <h1>Ajax Call</h1>
+
+    <p>No result is computed when the page is generated. A new throw result
+    is obtained with an Ajax request. The page is not reloaded.</p>
 
     <p>Roll-a-dice result: <span id="radResult"></span></p>
     <input type="button" id="rollAgain" class="btn btn-default" value="Roll Again" />
