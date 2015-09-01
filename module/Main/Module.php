@@ -4,7 +4,6 @@ namespace Main;
 
 use Zend\Mvc\ModuleRouteListener;
 use Zend\Mvc\MvcEvent;
-use Zend\Mvc\Controller\ControllerManager;
 use Main\View\Helper\LoginWidget;
 use Main\Service\LoginLogoutService;
 use Main\Service\RollADiceService;
