@@ -22,8 +22,10 @@ class AccessController extends AbstractActionController
     private $rbac;
     private $accDen403View;
     
-    public function __construct()
+    public function __construct($lls)
     {
+        $this->loginLogoutService = $lls;
+        
         $this->accDen403View = new ViewModel();
         $this->accDen403View->setTemplate('error/403');
         
@@ -35,12 +37,6 @@ class AccessController extends AbstractActionController
         
         $admin  = new Role(AccessController::ROLE_ADMINISTRATOR);
         $this->rbac->addRole($admin);
-    }
-    
-    public function setPluginManager(PluginManager $plugins) {
-        parent::setPluginManager($plugins);
-        $this->loginLogoutService = $this->getServiceLocator()
-            ->get('LoginLogoutService');
     }
     
     public function isValidRole($role) {

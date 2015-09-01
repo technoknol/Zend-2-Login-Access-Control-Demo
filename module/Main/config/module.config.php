@@ -91,9 +91,7 @@ return array(
     'controllers' => array(
         'invokables' => array(
             'Main\Controller\Index' => 'Main\Controller\IndexController',
-//            'Main\Controller\Authentication' => 'Main\Controller\AuthenticationController',
-            'Main\Controller\Access' => 'Main\Controller\AccessController',
-//            'Main\Controller\RollADice' => 'Main\Controller\RollADiceController'
+            // Other controllers are created with factories
         ),
     ),
     'view_manager' => array(

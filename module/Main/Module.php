@@ -8,6 +8,7 @@ use Main\View\Helper\LoginWidget;
 use Main\Service\LoginLogoutService;
 use Main\Service\RollADiceService;
 use Main\Controller\AuthenticationController;
+use Main\Controller\AccessController;
 use Main\Controller\RollADiceController;
 
 class Module
@@ -58,6 +59,12 @@ class Module
                     $sm   = $cm->getServiceLocator();
                     $depA = $sm->get('LoginLogoutService');
                     $controller = new AuthenticationController($depA);
+                    return $controller;
+                },
+                'Main\Controller\Access' => function($cm) {
+                    $sm   = $cm->getServiceLocator();
+                    $depA = $sm->get('LoginLogoutService');
+                    $controller = new AccessController($depA);
                     return $controller;
                 },
                 'Main\Controller\RollADice' => function($cm) {
