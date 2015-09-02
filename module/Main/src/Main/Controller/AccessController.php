@@ -6,7 +6,6 @@ use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 use Zend\Permissions\Rbac\Rbac;
 use Zend\Permissions\Rbac\Role;
-use Zend\Mvc\Controller\PluginManager;
 use Main\Controller\AccessController;
 use Main\Service\AuthenticationAdaptor;
 
