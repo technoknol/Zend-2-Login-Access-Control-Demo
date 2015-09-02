@@ -20,6 +20,7 @@ TESTING
 - Download ZF2 and unzip in c:\php\zf2-version
 - Create an Environment variable called ZF2_PATH pointing at c:\php\zf2-version\library
 - Reboot to make it effective
+- Update php.ini: include_path = ".;c:\php\ZendFramework-2.4.7\library"
 
 NETBEANS
 - Install the Zend2 plugin
