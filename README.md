@@ -50,3 +50,8 @@ a service, a roll-a-dice service has been implemented.
 
 Both means to throw a dice are available in the corresponding service page
 which contains some Javascript using JQuery.
+
+## Testing
+
+Some PHP unit tests for controllers and the roll-a-dice service have been
+implemented. They do not cover all code.
