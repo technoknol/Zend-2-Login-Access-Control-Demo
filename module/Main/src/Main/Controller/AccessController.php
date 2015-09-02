@@ -88,6 +88,8 @@ class AccessController extends AbstractActionController
                 return $vm;
             }
         }
+        
+        $this->getResponse()->setStatusCode(403);
         return $this->accDen403View;
     }
     
@@ -96,6 +98,7 @@ class AccessController extends AbstractActionController
         if ( $this->loggedInUserHasRole(AccessController::ROLE_ADMINISTRATOR)) {
             return new ViewModel();
         } else {
+            $this->getResponse()->setStatusCode(403);
             return $this->accDen403View;
         }
     }
