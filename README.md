@@ -8,6 +8,11 @@ example. But, it has been expanded with other features.
 
 A live example is available at http://zf2demo-dawningstreams.rhcloud.com/ 
 
+Assuming PHP is installed on your PC, you can also clone this application 
+locally and start it with the following command from the root directory:
+
+`"C:\php\php.exe" "-S" "localhost:8000" "-t" "public"`
+
 ## General Structure
 
 The structure of the code is based on the ZF2 skeleton application. However,
