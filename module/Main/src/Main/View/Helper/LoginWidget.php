@@ -3,7 +3,6 @@
 namespace Main\View\Helper;
 
 use Zend\View\Helper\AbstractHelper;
-use Zend\ModuleManager\Feature\ViewHelperProviderInterface;
 use Main\Service\LoginLogoutService;
 
 // The instance of this class is created in 
