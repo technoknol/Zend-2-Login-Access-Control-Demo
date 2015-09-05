@@ -14,6 +14,16 @@ return array(
                     ),
                 ),
             ),
+            'phpinfo' => array(
+                'type' => 'Zend\Mvc\Router\Http\Literal',
+                'options' => array(
+                    'route'    => '/phpinfo',
+                    'defaults' => array(
+                        'controller' => 'Main\Controller\Index',
+                        'action'     => 'phpinfo',
+                    ),
+                ),
+            ),
             'authenticate' => array(
                 'type'    => 'Literal',
                 'options' => array(
@@ -107,6 +117,7 @@ return array(
             'error/404'               => __DIR__ . '/../view/error/404.phtml',
             'error/index'             => __DIR__ . '/../view/error/index.phtml',
             'main/index/index'        => __DIR__ . '/../view/main/index/index.phtml',
+            'main/index/phpinfo'      => __DIR__ . '/../view/main/index/phpinfo.phtml',
             'main/login/widget'       => __DIR__ . '/../view/main/login/widget.phtml',
             'main/access/admin'       => __DIR__ . '/../view/main/access/admin.phtml',
             'main/access/user'        => __DIR__ . '/../view/main/access/user.phtml',
