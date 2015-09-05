@@ -42,4 +42,4 @@ class AuthenticationControllerTest extends AbstractHttpControllerTestCase
 //        $this->assertControllerClass('AuthenticationController');
 //        $this->assertMatchedRouteName('logout');
 //    }
-}
+    }
