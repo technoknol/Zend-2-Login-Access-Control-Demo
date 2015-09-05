@@ -13,3 +13,4 @@ composer.phar
 !/composer.lock
 /ZendCodeDemoTodo.txt
 /ZendNotes.txt
+/module/Main/src/Main/Database/demo.db

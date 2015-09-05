@@ -7,9 +7,11 @@ use Zend\Mvc\MvcEvent;
 use Main\View\Helper\LoginWidget;
 use Main\Service\LoginLogoutService;
 use Main\Service\RollADiceService;
+use Main\Service\PersistenceService;
 use Main\Controller\AuthenticationController;
 use Main\Controller\AccessController;
 use Main\Controller\RollADiceController;
+use Main\Controller\PersistenceController;
 
 class Module
 {
@@ -48,6 +50,9 @@ class Module
                 'RollADiceService' => function() {
                     return new RollADiceService();
                 },
+                'PersistenceService' => function() {
+                    return new PersistenceService();
+                },
             ),
         );
     }
@@ -71,6 +76,12 @@ class Module
                     $sm   = $cm->getServiceLocator();
                     $depA = $sm->get('RollADiceService');
                     $controller = new RollADiceController($depA);
+                    return $controller;
+                },
+                'Main\Controller\Persistence' => function($cm) {
+                    $sm   = $cm->getServiceLocator();
+                    $depA = $sm->get('PersistenceService');
+                    $controller = new PersistenceController($depA);
                     return $controller;
                 }
             ),

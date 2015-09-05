@@ -57,6 +57,112 @@ return array(
                      ),
                 ),
             ),
+            'clients' => array(
+                'type'    => 'Literal',
+                'options' => array(
+                    'route'    => '/clients',
+                    'defaults' => array(
+                        'controller'    => 'Main\Controller\Persistence',
+                        'action'        => 'clients',
+                    ),
+                )
+            ),
+            'client' => array(
+                'type'    => 'segment',
+                'options' => array(
+                     'route'    => '/client[/:id]',
+                     'constraints' => array(
+                         'id' => '[0-9]+',
+                     ),
+                     'defaults' => array(
+                         'controller' => 'Main\Controller\Persistence',
+                     ),
+                ),
+            ),
+            'createClient' => array(
+                'type'    => 'segment',
+                'options' => array(
+                     'route'    => '/createClient[/:id]',
+                     'constraints' => array(
+                         'id' => '[0-9]+',
+                     ),
+                     'defaults' => array(
+                         'controller' => 'Main\Controller\Persistence',
+                     ),
+                ),
+            ),
+            'deleteClient' => array(
+                'type'    => 'segment',
+                'options' => array(
+                     'route'    => '/deleteClient[/:id]',
+                     'constraints' => array(
+                         'id' => '[0-9]+',
+                     ),
+                     'defaults' => array(
+                         'controller' => 'Main\Controller\Persistence',
+                     ),
+                ),
+            ),
+            'order' => array(
+                'type'    => 'segment',
+                'options' => array(
+                     'route'    => '/order[/:id]',
+                     'constraints' => array(
+                         'id' => '[0-9]+',
+                     ),
+                     'defaults' => array(
+                         'controller' => 'Main\Controller\Persistence',
+                     ),
+                ),
+            ),
+            'createOrder' => array(
+                'type'    => 'segment',
+                'options' => array(
+                     'route'    => '/createOrder[/:id]',
+                     'constraints' => array(
+                         'id' => '[0-9]+',
+                     ),
+                     'defaults' => array(
+                         'controller' => 'Main\Controller\Persistence',
+                     ),
+                ),
+            ),
+            'deleteOrder' => array(
+                'type'    => 'segment',
+                'options' => array(
+                     'route'    => '/deleteOrder[/:id]',
+                     'constraints' => array(
+                         'id' => '[0-9]+',
+                     ),
+                     'defaults' => array(
+                         'controller' => 'Main\Controller\Persistence',
+                     ),
+                ),
+            ),
+            'createOrderLine' => array(
+                'type'    => 'segment',
+                'options' => array(
+                     'route'    => '/createOrderLine[/:id]',
+                     'constraints' => array(
+                         'id' => '[0-9]+',
+                     ),
+                     'defaults' => array(
+                         'controller' => 'Main\Controller\Persistence',
+                     ),
+                ),
+            ),
+            'deleteOrderLine' => array(
+                'type'    => 'segment',
+                'options' => array(
+                     'route'    => '/deleteOrderLine[/:id]',
+                     'constraints' => array(
+                         'id' => '[0-9]+',
+                     ),
+                     'defaults' => array(
+                         'controller' => 'Main\Controller\Persistence',
+                     ),
+                ),
+            ),
             'roll-a-dice' => array(
                 'type'    => 'Literal',
                 'options' => array(
@@ -112,16 +218,19 @@ return array(
         'exception_template'       => 'error/index',
         'template_map' => array(
             // Define a global template used to render smaller template in it
-            'layout/layout'           => __DIR__ . '/../view/layout/layout.phtml',
-            'error/403'               => __DIR__ . '/../view/error/403.phtml',
-            'error/404'               => __DIR__ . '/../view/error/404.phtml',
-            'error/index'             => __DIR__ . '/../view/error/index.phtml',
-            'main/index/index'        => __DIR__ . '/../view/main/index/index.phtml',
-            'main/index/phpinfo'      => __DIR__ . '/../view/main/index/phpinfo.phtml',
-            'main/login/widget'       => __DIR__ . '/../view/main/login/widget.phtml',
-            'main/access/admin'       => __DIR__ . '/../view/main/access/admin.phtml',
-            'main/access/user'        => __DIR__ . '/../view/main/access/user.phtml',
-            'main/service/rad'        => __DIR__ . '/../view/main/service/rolladice.phtml',
+            'layout/layout'              => __DIR__ . '/../view/layout/layout.phtml',
+            'error/403'                  => __DIR__ . '/../view/error/403.phtml',
+            'error/404'                  => __DIR__ . '/../view/error/404.phtml',
+            'error/index'                => __DIR__ . '/../view/error/index.phtml',
+            'main/index/index'           => __DIR__ . '/../view/main/index/index.phtml',
+            'main/index/phpinfo'         => __DIR__ . '/../view/main/index/phpinfo.phtml',
+            'main/persistence/clients'   => __DIR__ . '/../view/main/persistence/clients.phtml',
+            'main/persistence/client'    => __DIR__ . '/../view/main/persistence/client.phtml',
+            'main/persistence/order'     => __DIR__ . '/../view/main/persistence/order.phtml',
+            'main/login/widget'          => __DIR__ . '/../view/main/login/widget.phtml',
+            'main/access/admin'          => __DIR__ . '/../view/main/access/admin.phtml',
+            'main/access/user'           => __DIR__ . '/../view/main/access/user.phtml',
+            'main/service/rad'           => __DIR__ . '/../view/main/service/rolladice.phtml',
         ),
         'strategies' => array(
             'ViewJsonStrategy',

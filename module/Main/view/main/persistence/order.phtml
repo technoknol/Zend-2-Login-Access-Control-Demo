@@ -1,0 +1,34 @@
+
+<div class="col-md-12">
+
+<h1>Order Of <?php $this->order->getId(); ?></h1>
+
+<?php
+echo '<br />';
+
+$orderLines = $this->client->getOrderLines();
+
+if ( sizeof($orderLines) > 0 ) {
+    $total = 0.0;
+    $totalVAT = 0.0;
+    foreach($orderLines as $orderLine)
+    {
+        $price = $orderLine->getPrice();
+        $quantity = $orderLine->getQuantity();
+        $vat = $orderLine->getVAT();
+        $linePrice = $price * $quantity;
+        $lineVAT = $linePrice * $vat;
+        echo $orderLine->getProduct().' '
+            .$quantity.' '.$price.' '.$vat.' '
+            .$lineVAT.' '.$linePrice;
+        $total = $total + $linePrice;
+        $totalVAT = $totalVAT + $lineVAT;
+    }
+    echo "Total: ".$total."<br />";
+    echo "V.A.T: ".$totalVAT."<br />";
+} else {
+    echo "<p>No details.</p>";
+}
+?>
+
+</div>
