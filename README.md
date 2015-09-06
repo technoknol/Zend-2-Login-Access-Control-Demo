@@ -11,7 +11,7 @@ A live example is available at http://zf2demo-dawningstreams.rhcloud.com/
 Assuming PHP is installed on your PC, you can also clone this application 
 locally and start it with the following command from the root directory:
 
-`"C:\php\php.exe" "-S" "localhost:8000" "-t" "public"`
+`C:\php\php.exe -S localhost:8000 -t public`
 
 ## General Structure
 
