@@ -1,16 +1,28 @@
 
 <div class="col-md-12">
 
-<h1>Order Of <?php $this->order->getId(); ?></h1>
+<h1>Details For Order <?php echo $this->order->getId(); ?></h1>
 
 <?php
-echo '<br />';
 
-$orderLines = $this->client->getOrderLines();
+$orderLines = $this->orderLines;
 
 if ( sizeof($orderLines) > 0 ) {
+    
+    echo '<table class="table table-bordered">';
+    echo '<thead><tr>';
+    echo '<th>Product</th>';
+    echo '<th>Quantity</th>';
+    echo '<th>Unit Price</th>';
+    echo '<th>VAT</th>';
+    echo '<th>Line VAT</th>';
+    echo '<th>Line Price</th>';
+    echo '</tr></thead>';
+    echo '<tbody>';
+    
     $total = 0.0;
     $totalVAT = 0.0;
+    
     foreach($orderLines as $orderLine)
     {
         $price = $orderLine->getPrice();
@@ -18,14 +30,21 @@ if ( sizeof($orderLines) > 0 ) {
         $vat = $orderLine->getVAT();
         $linePrice = $price * $quantity;
         $lineVAT = $linePrice * $vat;
-        echo $orderLine->getProduct().' '
-            .$quantity.' '.$price.' '.$vat.' '
-            .$lineVAT.' '.$linePrice;
+        echo '<tr><td>'.$orderLine->getProduct().'</td>'
+            .'<td>'.$quantity.'</td>'
+            .'<td>'.number_format((float)$price,2,'.','').'</td>'
+            .'<td>'.round($vat*100).'%</td>'
+            .'<td>'.number_format((float)$lineVAT,2,'.','').'</td>'
+            .'<td>'.number_format((float)$linePrice,2,'.','').'</td><tr>';
         $total = $total + $linePrice;
         $totalVAT = $totalVAT + $lineVAT;
     }
-    echo "Total: ".$total."<br />";
-    echo "V.A.T: ".$totalVAT."<br />";
+    
+    echo '</tbody>';
+    echo '</table>';
+    
+    echo "<strong>Total:</strong> ".number_format((float)$total,2,'.','')." EUR<br />";
+    echo "(VAT: ".number_format((float)$totalVAT,2,'.','')." EUR)<br />";
 } else {
     echo "<p>No details.</p>";
 }

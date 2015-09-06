@@ -1,0 +1,19 @@
+CREATE TABLE IF NOT EXISTS clients (
+    id INTEGER,
+    name VARCHAR(50) NOT NULL,
+    vatNumber VARCHAR(20) NOT NULL,
+PRIMARY KEY(id));
+
+CREATE TABLE IF NOT EXISTS orders (
+    id INTEGER,
+    FOREIGN KEY(clientId) REFERENCES clients(id)
+PRIMARY KEY(id));
+
+CREATE TABLE IF NOT EXISTS orderlines (
+    id INTEGER,
+    product VARCHAR(50) NOT NULL,
+    quantity INTEGER NOT NULL,
+    price DOUBLE PRECISION NOT NULL,
+    vat DOUBLE PRECISION NOT NULL,
+    FOREIGN KEY(orderId) REFERENCES orders(id)
+PRIMARY KEY(id));

@@ -29,6 +29,8 @@ class PersistenceController extends AbstractActionController
         $vm = new ViewModel();
         $vm->setVariable("client",
             $this->persistenceService->getClient($id));
+        $vm->setVariable("orders",
+            $this->persistenceService->getOrders($id));
         return $vm;
     }
     
@@ -38,6 +40,8 @@ class PersistenceController extends AbstractActionController
         $vm = new ViewModel();
         $vm->setVariable("order",
             $this->persistenceService->getOrder($id));
+        $vm->setVariable("orderLines",
+            $this->persistenceService->getOrderLines($id));
         return $vm;
     }
     
@@ -84,7 +88,7 @@ class PersistenceController extends AbstractActionController
         $this->persistenceService->deleteOrder($id);
         return $this->redirect()->toRoute('clients');
     }
-    
+                    
     public function resetWithDemoDataAction() {
         $this->persistenceService->resetWithDemoData();
         return $this->redirect()->toRoute('clients');

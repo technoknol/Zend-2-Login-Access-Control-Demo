@@ -2,6 +2,8 @@
 
 namespace Main\Model;
 
+use Doctrine\Common\Collections\ArrayCollection;
+
 /**
  * @Entity @Table(name="orders")
  **/
@@ -10,19 +12,31 @@ class Order
     /** @Id @Column(type="integer") @GeneratedValue **/
     protected $id;
     
-    /** @Column(type="int") **/
-    protected $clientId;
     /**
-     * @Column(type="datetime")
-     * @var DateTime
+     * @Column(type="integer")
+     * @ManyToOne(targetEntity="client",inversedBy="orders",cascade={"persist"})
+     * @JoinColumn(name="clientId",referencedColumnName="id")
      */
-    protected $creationDate;
-    
-    protected $lines;
+    protected $clientId;
+
+    /**
+     * @OneToMany(targetEntity="OrderLine", mappedBy="orderId",cascade={"persist"})
+     * @var OrderLine[]
+     */
+    protected $orderLines;
     
     public function __construct()
     {
-        $this->lines = new ArrayCollection();
+        $this->orderLines = new ArrayCollection();
+    }
+    
+    public function addOrderLine($orderline)
+    {
+        $this->orderLines[] = $orderline;
+    }
+    
+    public function getOrderLines() {
+        return $this->orderlines;
     }
 
     public function getId()
@@ -32,25 +46,13 @@ class Order
 
     public function getClientId()
     {
-        return $this->deliveryAddressId;
+        return $this->clientId;
     }
 
     public function setClientId($in)
     {
         if (is_int($in)){
-            $this->deliveryAddressId = $in;
-        }
-    }
-    
-    public function getCreationDate()
-    {
-        return $this->creationDate;
-    }
-
-    public function setCreationDate($in)
-    {
-        if (is_date($in)){
-            $this->creationDate = $in;
+            $this->clientId = $in;
         }
     }
 }

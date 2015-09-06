@@ -57,6 +57,16 @@ return array(
                      ),
                 ),
             ),
+            'resetWithDemoData' => array(
+                'type'    => 'Literal',
+                'options' => array(
+                    'route'    => '/resetWithDemoData',
+                    'defaults' => array(
+                        'controller'    => 'Main\Controller\Persistence',
+                        'action'        => 'resetWithDemoData',
+                    ),
+                )
+            ),
             'clients' => array(
                 'type'    => 'Literal',
                 'options' => array(
@@ -76,6 +86,7 @@ return array(
                      ),
                      'defaults' => array(
                          'controller' => 'Main\Controller\Persistence',
+                         'action'     => 'client'
                      ),
                 ),
             ),
@@ -88,6 +99,7 @@ return array(
                      ),
                      'defaults' => array(
                          'controller' => 'Main\Controller\Persistence',
+                         'action'     => 'createClient'
                      ),
                 ),
             ),
@@ -100,6 +112,7 @@ return array(
                      ),
                      'defaults' => array(
                          'controller' => 'Main\Controller\Persistence',
+                         'action'     => 'deleteClient'
                      ),
                 ),
             ),
@@ -112,6 +125,7 @@ return array(
                      ),
                      'defaults' => array(
                          'controller' => 'Main\Controller\Persistence',
+                         'action'     => 'order'
                      ),
                 ),
             ),
@@ -124,6 +138,7 @@ return array(
                      ),
                      'defaults' => array(
                          'controller' => 'Main\Controller\Persistence',
+                         'action'     => 'createOrder'
                      ),
                 ),
             ),
@@ -136,6 +151,7 @@ return array(
                      ),
                      'defaults' => array(
                          'controller' => 'Main\Controller\Persistence',
+                         'action'     => 'deleteOrder'
                      ),
                 ),
             ),
@@ -148,6 +164,7 @@ return array(
                      ),
                      'defaults' => array(
                          'controller' => 'Main\Controller\Persistence',
+                         'action'     => 'createOrderLine'
                      ),
                 ),
             ),
@@ -160,6 +177,7 @@ return array(
                      ),
                      'defaults' => array(
                          'controller' => 'Main\Controller\Persistence',
+                         'action'     => 'deleteOrderLine'
                      ),
                 ),
             ),

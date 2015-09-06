@@ -10,13 +10,17 @@ class OrderLine
     /** @Id @Column(type="integer") @GeneratedValue **/
     protected $id;
 
-    /** @Column(type="int") **/
+    /**
+     * @Column(type="integer")
+     * @ManyToOne(targetEntity="OrderLine",inversedBy="orderLines",cascade={"persist"})
+     * @JoinColumn(name="orderId",referencedColumnName="id")
+     */
     protected $orderId;
     
     /** @Column(type="string") **/
     protected $product;
     
-    /** @Column(type="int") **/
+    /** @Column(type="integer") **/
     protected $quantity;
     
     /** @Column(type="float") **/
@@ -37,7 +41,7 @@ class OrderLine
 
     public function setOrderId($in)
     {
-        if (is_string($in)){
+        if (is_int($in)){
             $this->orderId = $in;
         }
     }

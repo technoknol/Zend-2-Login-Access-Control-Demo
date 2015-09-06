@@ -4,7 +4,6 @@
 <h1>Clients</h1>
 
 <?php
-echo '<br />';
 if ( sizeof($this->clients) > 0 ) {
     foreach($this->clients as $client)
     {
@@ -14,11 +13,15 @@ if ( sizeof($this->clients) > 0 ) {
     echo '<p>No clients.</p>';
 }
 ?>
+<br />
+<a href="/resetWithDemoData" class="btn btn-default">Reset With Demo Data</a>
 
 </div>
 
 <div class="col-xs-12 col-md-6">
 
+    <h1>Remark</h1>
+    
     <p>Click on a client to display it orders.</p>
 
 </div>
