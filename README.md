@@ -56,6 +56,14 @@ a service, a roll-a-dice service has been implemented.
 Both means to throw a dice are available in the corresponding service page
 which contains some Javascript using JQuery.
 
+## Persistence With Doctrine ORM
+
+Three entities have been created: *Client*, *Order* and *OrderLine*. There is
+a one-to-many relationship between clients and orders, and another 
+one-to-many relationship between orders and order lines.
+
+Some basic functionalities to add or delete entities have been implemented too.
+
 ## Testing
 
 Some PHP unit tests for controllers and the roll-a-dice service have been
