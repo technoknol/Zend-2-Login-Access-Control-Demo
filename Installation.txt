@@ -58,3 +58,19 @@ ZEND APP CREATION
 - Composer:
 -- Right-click the Netbeans project and select Composer > install
 -- a composer.lock will be automatically created, add it to git commit
+
+ORM PERSISTENCE DOCTRINE2
+-- Install the Doctrine 2 plugin in Netbeans
+-- Copy /bin from /vendor to c:\php\bin
+-- Configure access to Doctrine 2 .bat in Netbeans PHP config
+-- Enable Doctrine2 in project properties
+-- Make sure the doctrine dependency is set in composer.json
+    "require": {
+        ...
+        "doctrine/orm": "2.4.*"
+    }
+-- Create the bootstrap.php and cli-config.php files in the project root
+-- To invoke, right-click on the Netbeans project
+--- For parameters: --generate-methods="true"
+>>> Bug it is buggy
+
