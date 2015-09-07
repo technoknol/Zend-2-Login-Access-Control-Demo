@@ -78,6 +78,7 @@ class PersistenceController extends AbstractActionController
     {
         $cid = (int) $this->params()->fromRoute('clientid', -1);
         if ( $cid >= 0 ) {
+            $_SESSION["lastUrl"] = "/client/".$cid;
             $client = $this->persistenceService->getClient($cid);
             $no = $this->persistenceService->newDummyOrder($client);
             $this->persistenceService->getEM()->persist($no);
@@ -99,6 +100,7 @@ class PersistenceController extends AbstractActionController
     {
         $oid = (int) $this->params()->fromRoute('orderid', -1);
         if ( $oid >= 0 ) {
+            $_SESSION["lastUrl"] = "/order/".$oid;
             $client = $this->persistenceService->getOrder($oid);
             $nol = $this->persistenceService->newDummyOrderLine($client);
             $this->persistenceService->getEM()->persist($nol);
