@@ -3,30 +3,41 @@
 namespace Main\Model;
 
 /**
- * @Entity @Table(name="orderlines")
+ * @Entity
+ * @Table(name="orderlines")
  **/
 class OrderLine
 {
-    /** @Id @Column(type="integer") @GeneratedValue **/
+    /**
+     * @Column(type="integer")
+     * @Id
+     * @GeneratedValue(strategy="AUTO")
+     **/
     protected $id;
 
     /**
-     * @Column(type="integer")
-     * @ManyToOne(targetEntity="OrderLine",inversedBy="orderLines",cascade={"persist"})
-     * @JoinColumn(name="orderId",referencedColumnName="id")
+     * @ManyToOne(targetEntity="Order", inversedBy="orderslines")
      */
-    protected $orderId;
+    protected $order;
     
-    /** @Column(type="string") **/
+    /**
+     * @Column(type="string",length=50)
+     **/
     protected $product;
     
-    /** @Column(type="integer") **/
+    /**
+     * @Column(type="integer")
+     **/
     protected $quantity;
     
-    /** @Column(type="float") **/
+    /**
+     * @Column(type="decimal", scale=2)
+     **/
     protected $price;
     
-    /** @Column(type="float") **/
+    /**
+     * @Column(type="decimal", scale=2)
+     **/
     protected $vat;
 
     public function getId()
@@ -34,15 +45,16 @@ class OrderLine
         return $this->id;
     }
 
-    public function getOrderId()
+    public function getOrder()
     {
-        return $this->orderId;
+        return $this->order;
     }
 
-    public function setOrderId($in)
+    public function setOrder($in)
     {
-        if (is_int($in)){
-            $this->orderId = $in;
+        if ( $in ) {
+            $in->addOrderLine($this);
+            $this->order = $in;
         }
     }
     

@@ -132,9 +132,9 @@ return array(
             'createOrder' => array(
                 'type'    => 'segment',
                 'options' => array(
-                     'route'    => '/createOrder[/:id]',
+                     'route'    => '/createOrder[/:clientid]',
                      'constraints' => array(
-                         'id' => '[0-9]+',
+                         'clientid' => '[0-9]+',
                      ),
                      'defaults' => array(
                          'controller' => 'Main\Controller\Persistence',
@@ -158,9 +158,9 @@ return array(
             'createOrderLine' => array(
                 'type'    => 'segment',
                 'options' => array(
-                     'route'    => '/createOrderLine[/:id]',
+                     'route'    => '/createOrderLine[/:orderid]',
                      'constraints' => array(
-                         'id' => '[0-9]+',
+                         'orderid' => '[0-9]+',
                      ),
                      'defaults' => array(
                          'controller' => 'Main\Controller\Persistence',

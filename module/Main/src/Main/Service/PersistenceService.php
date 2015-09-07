@@ -51,77 +51,69 @@ class PersistenceService
     }
     
     public function getOrders($clientId) {
-        return $this->db->getEntityManager()
-            ->getRepository('\Main\Model\Order')->findBy(
-            array('clientId' => $clientId));
+        $res = array();
+        $clnt = $this->clientRepository->find($clientId);
+        if ( $clnt ) {
+            $res = $clnt->getOrders();
+        }
+        return $res;
     }
     
     public function getOrderLines($orderId) {
-        return $this->orderLinesRepository->findBy(
-            array('orderId' => $orderId));
+        $res = array();
+        $clnt = $this->orderRepository->find($orderId);
+        if ( $clnt ) {
+            $res = $clnt->getOrderLines();
+        }
+        return $res;
     }
     
     public function getClient($clientId) {
         $res = null;
         if (is_int($clientId)){
-            $res = $this->db->getEntityManager()
-                ->find('\Main\Model\Client',$clientId);
+            $res = $this->clientRepository->find($clientId);
         }
         return $res;
     }
     
     public function deleteClient($clientId) {
-        $res = null;
         if (is_int($clientId)) {
-            $retr = $this->getClient($clientId);
-            if ( $retr ) {
-                $this->db->getEntityManager()->remove($retr);
-                $this->db->getEntityManager()->flush();
-            }
+            $res = $this->clientRepository->find($clientId);
+            $this->getEM()->remove($res);
+            $this->getEM()->flush();
         }
-        return $res;
     }
     
     public function getOrder($orderId) {
         $res = null;
         if (is_int($orderId)){
-            $res = $this->db->getEntityManager()
-                ->find('\Main\Model\Order',$orderId);
+            $res = $this->orderRepository->find($orderId);
         }
         return $res;
     }
     
     public function deleteOrder($orderId) {
-        $res = null;
-        if (is_int($orderId)){
-            $retr = $this->getOrder($orderId);
-            if ( $retr ) {
-                $this->db->getEntityManager()->remove($retr);
-                $this->db->getEntityManager()->flush();
-            }
+        if (is_int($orderId)) {
+            $res = $this->orderRepository->find($orderId);
+            $this->getEM()->remove($res);
+            $this->getEM()->flush();
         }
-        return $res;
     }
     
     public function getOrderLine($orderLineId) {
         $res = null;
         if (is_int($orderLineId)){
-            $res = $this->db->getEntityManager()
-                ->find('\Main\Model\OrderLine',$orderLineId);
+            $res = $this->orderLinesRepository->find($orderLineId);
         }
         return $res;
     }
 
     public function deleteOrderLine($orderLineId) {
-        $res = null;
-        if (is_int($orderLineId)){
-            $retr = $this->getOrderLine($orderLineId);
-            if ( $retr ) {
-                $this->db->getEntityManager()->remove($retr);
-                $this->db->getEntityManager()->flush();
-            }
+        if (is_int($orderLineId)) {
+            $res = $this->orderLinesRepository->find($orderLineId);
+            $this->getEM()->remove($res);
+            $this->getEM()->flush();
         }
-        return $res;
     }
     
     public function resetWithDemoData() {
@@ -146,7 +138,7 @@ class PersistenceService
             $this->db->getEntityManager()->flush();
             
             for ($j=1;$j<=rand(1,7);$j++) {
-                $tmpOrder = $this->newDummyOrder($tmpClient->getId());
+                $tmpOrder = $this->newDummyOrder($tmpClient);
                 $tmpClient->addOrder($tmpOrder);
             }
             $this->db->getEntityManager()->persist($tmpClient);
@@ -155,7 +147,7 @@ class PersistenceService
             $tmpOrders = $tmpClient->getOrders();
             foreach ($tmpOrders as $tmpOrderr) {
                 for ($k=1;$k<=rand(3,13);$k++) {
-                    $tmpOrderLine = $this->newDummyOrderLine($tmpOrderr->getId());
+                    $tmpOrderLine = $this->newDummyOrderLine($tmpOrderr);
                     $tmpOrderr->addOrderLine($tmpOrderLine);
                 }
                 $this->db->getEntityManager()->persist($tmpOrderr);
@@ -175,15 +167,15 @@ class PersistenceService
         return $res;
     }
 
-    public function newDummyOrder($clientId) {
+    public function newDummyOrder($client) {
         $res = new Order();
-        $res->setClientId($clientId);
+        $res->setClient($client);
         return $res;
     }
     
-    public function newDummyOrderLine($orderId) {
+    public function newDummyOrderLine($order) {
         $res = new OrderLine();
-        $res->setOrderId($orderId);
+        $res->setOrder($order);
         $tmp1 = rand(0,(sizeof(PersistenceService::$productNames)-1));
         $res->setProduct(PersistenceService::$productNames[$tmp1]);
         $price = rand(1,20000) / 100.0;
@@ -192,5 +184,9 @@ class PersistenceService
         $tmp2 = rand (0,(sizeof(PersistenceService::$vatPercentages)-1));
         $res->setVat(PersistenceService::$vatPercentages[$tmp2]);
         return $res;
+    }
+    
+    public function getEM() {
+        return $this->db->getEntityManager();
     }
 }

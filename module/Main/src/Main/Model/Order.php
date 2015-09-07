@@ -5,34 +5,36 @@ namespace Main\Model;
 use Doctrine\Common\Collections\ArrayCollection;
 
 /**
- * @Entity @Table(name="orders")
+ * @Entity
+ * @Table(name="orders")
  **/
 class Order
 {
-    /** @Id @Column(type="integer") @GeneratedValue **/
+    /**
+     * @Column(type="integer")
+     * @Id
+     * @GeneratedValue(strategy="AUTO")
+     **/
     protected $id;
     
     /**
-     * @Column(type="integer")
-     * @ManyToOne(targetEntity="client",inversedBy="orders",cascade={"persist"})
-     * @JoinColumn(name="clientId",referencedColumnName="id")
+     * @ManyToOne(targetEntity="Client", inversedBy="orders")
      */
-    protected $clientId;
+    protected $client;
 
     /**
-     * @OneToMany(targetEntity="OrderLine", mappedBy="orderId",cascade={"persist"})
-     * @var OrderLine[]
+     * @OneToMany(targetEntity="OrderLine", mappedBy="order",cascade={"persist","remove"})
      */
-    protected $orderLines;
+    protected $orderlines;
     
     public function __construct()
     {
-        $this->orderLines = new ArrayCollection();
+        $this->orderlines = new ArrayCollection();
     }
     
     public function addOrderLine($orderline)
     {
-        $this->orderLines[] = $orderline;
+        $this->orderlines[] = $orderline;
     }
     
     public function getOrderLines() {
@@ -44,15 +46,16 @@ class Order
         return $this->id;
     }
 
-    public function getClientId()
+    public function getClient()
     {
-        return $this->clientId;
+        return $this->client;
     }
 
-    public function setClientId($in)
+    public function setClient($in)
     {
-        if (is_int($in)){
-            $this->clientId = $in;
+        if ( $in ) {
+            $in->addOrder($this);
+            $this->client = $in;
         }
     }
 }

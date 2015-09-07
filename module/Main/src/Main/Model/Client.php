@@ -5,22 +5,30 @@ namespace Main\Model;
 use Doctrine\Common\Collections\ArrayCollection;
 
 /**
- * @Entity @Table(name="clients")
+ * @Entity
+ * @Table(name="clients")
  **/
 class Client
 {
-    /** @Id @Column(type="integer") @GeneratedValue **/
+    /**
+     * @Column(type="integer")
+     * @Id
+     * @GeneratedValue(strategy="AUTO")
+     **/
     protected $id;
     
-    /** @Column(type="string") **/
+    /**
+     * @Column(type="string",length=50)
+     **/
     protected $name;
     
-    /** @Column(type="string") **/
+    /**
+     * @Column(type="string",length=20)
+     **/
     protected $vatNumber;
     
     /**
-     * @OneToMany(targetEntity="Order",mappedBy="clientId",cascade={"persist"})
-     * @var Order[]
+     * @OneToMany(targetEntity="Order", mappedBy="client",cascade={"persist","remove"})
      **/
     protected $orders;
     

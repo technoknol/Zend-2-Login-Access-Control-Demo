@@ -5,13 +5,32 @@
 
 <?php
 if ( sizeof($this->clients) > 0 ) {
+    
+    echo '<table class="table table-nonfluid">';
+    echo '<thead><tr>';
+    echo '<th>Name</th>';
+    echo '<th>Delete</th>';
+    echo '</tr></thead>';
+    echo '<tbody>';
+    
     foreach($this->clients as $client)
     {
-        echo '<a href="/client/'.$client->getId().'">'.$client->getName().'</a><br />';
+        echo '<tr><td>'
+             .'<a href="/client/'.$client->getId().'">'.$client->getName().'</a>&nbsp;&nbsp;&nbsp;'
+             .'</td><td><a href="/deleteClient/'.$client->getId().'">Delete</a>'
+             .'</td></tr>';
     }
+    
+    echo '</tbody>';
+    echo '</table>';
+    
 } else {
     echo '<p>No clients.</p>';
 }
+
+echo '<p><a href="/createClient">Add Client</a></p>';
+
+
 ?>
 <br />
 <a href="/resetWithDemoData" class="btn btn-default">Reset With Demo Data</a>
@@ -22,7 +41,7 @@ if ( sizeof($this->clients) > 0 ) {
 
     <h1>Remark</h1>
     
-    <p>Click on a client to display it orders.</p>
+    <p>Click on a client to display its orders.</p>
 
 </div>
 

@@ -1,3 +1,0 @@
-DROP TABLE IF EXISTS orderlines;
-DROP TABLE IF EXISTS orders;
-DROP TABLE IF EXISTS clients;

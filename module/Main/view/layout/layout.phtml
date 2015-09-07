@@ -20,7 +20,8 @@
                         ->prependStylesheet($this->basePath('/css/bootstrap-responsive.min.css'))
                         ->prependStylesheet($this->basePath('css/style.css'))
                         ->prependStylesheet($this->basePath('css/bootstrap-theme.min.css'))
-                        ->prependStylesheet($this->basePath('css/bootstrap.min.css')) ?>
+                        ->prependStylesheet($this->basePath('css/bootstrap.min.css'))
+                        ->prependStylesheet($this->basePath('css/mine.css'))?>
 
         <!-- Scripts -->
         <?php echo $this->headScript()
@@ -45,7 +46,7 @@
                     <ul class="nav navbar-nav">
                         <li class="active"><a href="<?php echo $this->url('home') ?>"><?php echo $this->translate('Home') ?></a></li>
                         <li class="active"><a href="<?php echo $this->url('roll-a-dice') ?>"><?php echo $this->translate('Roll-A-Dice Service') ?></a></li>
-                        <li class="active"><a href="<?php echo $this->url('clients') ?>"><?php echo $this->translate('Clients/Orders') ?></a></li>
+                        <li class="active"><a href="<?php echo $this->url('clients') ?>"><?php echo $this->translate('Clients/Orders Persistence') ?></a></li>
                         <li class="active"><a href="<?php echo $this->url('phpinfo') ?>"><?php echo $this->translate('PHP Info') ?></a></li>
                     </ul>
                 </div><!--/.nav-collapse -->

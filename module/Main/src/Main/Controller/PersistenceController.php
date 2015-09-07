@@ -13,10 +13,16 @@ class PersistenceController extends AbstractActionController
     public function __construct($ps)
     {
         $this->persistenceService = $ps;
+        
+        session_start();
+        if (!isset($_SESSION["lastUrl"])) {
+            $_SESSION["lastUrl"] = "/";
+        }
     }
     
     public function clientsAction()
     {
+        $_SESSION["lastUrl"] = "/clients";
         $vm = new ViewModel();
         $vm->setVariable("clients",
             $this->persistenceService->getClients());
@@ -26,6 +32,9 @@ class PersistenceController extends AbstractActionController
     public function clientAction()
     {
         $id = (int) $this->params()->fromRoute('id', -1);
+        if ( $id >= 0 ) {
+            $_SESSION["lastUrl"] = "/client/".$id;
+        }
         $vm = new ViewModel();
         $vm->setVariable("client",
             $this->persistenceService->getClient($id));
@@ -37,6 +46,9 @@ class PersistenceController extends AbstractActionController
     public function orderAction()
     {
         $id = (int) $this->params()->fromRoute('id', -1);
+        if ( $id > 0 ) {
+            $_SESSION["lastUrl"] = "/order/".$id;
+        }
         $vm = new ViewModel();
         $vm->setVariable("order",
             $this->persistenceService->getOrder($id));
@@ -48,45 +60,60 @@ class PersistenceController extends AbstractActionController
     public function createClientAction()
     {
         $nc = $this->persistenceService->newDummyClient();
-        // Persist $nc
+        $this->persistenceService->getEM()->persist($nc);
+        $this->persistenceService->getEM()->flush();
         return $this->redirect()->toRoute('clients');
     }
     
     public function deleteClientAction()
     {
         $id = (int) $this->params()->fromRoute('id', -1);
-        $this->persistenceService->deleteClient($id);
+        if ( $id >= 0 ) {
+            $this->persistenceService->deleteClient($id);
+        }
         return $this->redirect()->toRoute('clients');
     }
     
     public function createOrderAction()
     {
         $cid = (int) $this->params()->fromRoute('clientid', -1);
-        $no = $this->persistenceService->newDummyOrder($cid);
-        // Persist $no
-        return $this->redirect()->toRoute('clients');
+        if ( $cid >= 0 ) {
+            $client = $this->persistenceService->getClient($cid);
+            $no = $this->persistenceService->newDummyOrder($client);
+            $this->persistenceService->getEM()->persist($no);
+            $this->persistenceService->getEM()->flush();
+        }
+        return $this->redirect()->toUrl($_SESSION["lastUrl"]);
     }
     
     public function deleteOrderAction()
     {
         $id = (int) $this->params()->fromRoute('id', -1);
-        $this->persistenceService->deleteOrder($id);
-        return $this->redirect()->toRoute('clients');
+        if ( $id >= 0 ) {
+            $this->persistenceService->deleteOrder($id);
+        }
+        return $this->redirect()->toUrl($_SESSION["lastUrl"]);
     }
     
     public function createOrderLineAction()
     {
         $oid = (int) $this->params()->fromRoute('orderid', -1);
-        $nol = $this->persistenceService->newDummyOrderLine($oid);
-        // Persist $nol
-        return $this->redirect()->toRoute('clients');
+        if ( $oid >= 0 ) {
+            $client = $this->persistenceService->getOrder($oid);
+            $nol = $this->persistenceService->newDummyOrderLine($client);
+            $this->persistenceService->getEM()->persist($nol);
+            $this->persistenceService->getEM()->flush();
+        }
+        return $this->redirect()->toUrl($_SESSION["lastUrl"]);
     }
     
     public function deleteOrderLineAction()
     {
         $id = (int) $this->params()->fromRoute('id', -1);
-        $this->persistenceService->deleteOrder($id);
-        return $this->redirect()->toRoute('clients');
+        if ( $id >= 0 ) {
+            $this->persistenceService->deleteOrderLine($id);
+        }
+        return $this->redirect()->toUrl($_SESSION["lastUrl"]);
     }
                     
     public function resetWithDemoDataAction() {
