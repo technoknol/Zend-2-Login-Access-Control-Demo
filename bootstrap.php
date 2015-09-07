@@ -6,8 +6,12 @@ use Doctrine\ORM\EntityManager;
 require_once "vendor/autoload.php";
 
 // Create a simple "default" Doctrine ORM configuration for Annotations
-$isDevMode = true;
-$config = Setup::createAnnotationMetadataConfiguration(array(__DIR__."/module"), $isDevMode);
+$isDevMode = false;
+$config = Setup::createAnnotationMetadataConfiguration(array(
+    __DIR__."/module"), $isDevMode);
+
+//$config = Setup::createAnnotationMetadataConfiguration(
+//    array(__DIR__."/module"), $isDevMode, null, null, false);
 
 // database configuration parameters
 $conn = array(
