@@ -60,9 +60,11 @@ which contains some Javascript using JQuery.
 
 Three entities have been created: *Client*, *Order* and *OrderLine*. There is
 a one-to-many relationship between clients and orders, and another 
-one-to-many relationship between orders and order lines.
+one-to-many relationship between orders and order lines. Some basic 
+functionalities to add or delete entities have been implemented too.
 
-Some basic functionalities to add or delete entities have been implemented too.
+A local SQLite3 database called `demo.db` is created (if missing) to persist
+data.
 
 ## Testing
 
