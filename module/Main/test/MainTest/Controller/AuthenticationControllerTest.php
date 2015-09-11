@@ -34,6 +34,8 @@ class AuthenticationControllerTest extends AbstractHttpControllerTestCase
     
 //    public function testLogoutActionCanBeAccessed()
 //    {
+//        // trigger_error (LOG_ERR,"Testing log");
+//        
 //        $this->dispatch('/logout');
 //        $this->assertResponseStatusCode(302);
 //
