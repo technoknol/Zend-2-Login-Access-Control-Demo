@@ -1,12 +1,11 @@
 ZendFramework 2 Demo Application
 ================================
 
-# Introduction
+## Introduction
 
 This started as a simple ZF2 demo login/logout (with access control) application
-example. But, it has been expanded with other features.
-
-A live example is available at http://zf2demo-tshikaaa.rhcloud.com/ 
+example. But, it has been expanded with other features. A live example is
+available at http://zf2demo-tshikaaa.rhcloud.com/.
 
 The Symfony2 version of this demo application is available 
 [here](https://github.com/JVerstry/Symfony-2-Login-Access-Control-Demo).
