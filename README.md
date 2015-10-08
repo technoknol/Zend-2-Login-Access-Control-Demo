@@ -6,10 +6,14 @@ ZendFramework 2 Demo Application
 This started as a simple ZF2 demo login/logout (with access control) application
 example. But, it has been expanded with other features.
 
-A live example is available at http://zf2demo-dawningstreams.rhcloud.com/ 
+A live example is available at http://zf2demo-tshikaaa.rhcloud.com/ 
 
-Assuming PHP is installed on your PC, you can also clone this application 
-locally and start it with the following command from the root directory:
+The Symfony2 version of this demo application is available 
+[here](https://github.com/JVerstry/Symfony-2-Login-Access-Control-Demo).
+
+Assuming PHP 5.4.0 (or higher) is installed on your PC, you can also clone this
+application locally and start it with the following command from the root
+directory:
 
 `C:\php\php.exe -S localhost:8000 -t public`
 
