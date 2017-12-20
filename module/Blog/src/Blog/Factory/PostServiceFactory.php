@@ -17,6 +17,7 @@ use Zend\ServiceManager\ServiceLocatorInterface;
 class PostServiceFactory implements FactoryInterface
 {
 
+
     /**
      * Create service
      *
